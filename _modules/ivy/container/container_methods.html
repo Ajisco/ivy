@@ -46,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -884,7 +885,7 @@
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">mul</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">builtins</span> <span class="kn">import</span> <span class="nb">set</span>
 
 <span class="c1"># local</span>
@@ -8612,8 +8613,8 @@
 <span class="sd">    x2</span>
 <span class="sd">        Tensor containing maximum values, must be broadcastable to x1.</span>
 <span class="sd">    out</span>
-<span class="sd">        optional output array, for writing the result to. It must have a shape that the</span>
-<span class="sd">        inputs broadcast to.</span>
+<span class="sd">        optional output array, for writing the result to. It must have</span>
+<span class="sd">        a shape that the inputs broadcast to.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -8648,8 +8649,8 @@
 <span class="sd">    x2</span>
 <span class="sd">        Tensor containing maximum values, must be broadcastable to x1.</span>
 <span class="sd">    out</span>
-<span class="sd">        optional output array, for writing the result to. It must have a shape that the</span>
-<span class="sd">        inputs broadcast to.</span>
+<span class="sd">        optional output array, for writing the result to. It must</span>
+<span class="sd">        have a shape that the inputs broadcast to.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -9126,6 +9127,106 @@
 <span class="sd">    ret</span>
 <span class="sd">        New container with the values gathered at the specified indices along</span>
 <span class="sd">        the specified axis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="static_has_nans"><a class="viewcode-back" href="../../../functional/ivy/general/has_nans/static_has_nans_container.html#ivy.container.container_methods.static_has_nans">[docs]</a><span class="k">def</span> <span class="nf">static_has_nans</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="n">include_infs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container static method variant of ivy.has_nans. This method simply wraps</span>
+<span class="sd">    the function, and so the docstring for ivy.has_nans also applies to this method</span>
+<span class="sd">    with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        Input container.</span>
+<span class="sd">    include_infs</span>
+<span class="sd">        Whether to include ``+infinity`` and ``-infinity`` in the check.</span>
+<span class="sd">        Default is True.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        container of booleans, whether there is a nans at indices.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3]), b=ivy.array([1, 2, float(&#39;nan&#39;)]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_has_nans(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: true</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="has_nans"><a class="viewcode-back" href="../../../functional/ivy/general/has_nans/has_nans_container.html#ivy.container.container_methods.has_nans">[docs]</a><span class="k">def</span> <span class="nf">has_nans</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+    <span class="n">include_infs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container instance method variant of ivy.has_nans.</span>
+<span class="sd">    This method simply wraps the function, and so the docstring</span>
+<span class="sd">    for ivy.has_nans also applies to this method</span>
+<span class="sd">    with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        The container from which to check nans.</span>
+<span class="sd">    include_infs</span>
+<span class="sd">        Whether to include ``+infinity`` and ``-infinity`` in the check.</span>
+<span class="sd">        Default is True.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Boolean, true if container has a nans, false otherwise.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3]), b=ivy.array([1, 2, float(&#39;nan&#39;)]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.has_nans()</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: false,</span>
+<span class="sd">        b: true</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -11809,17 +11910,21 @@
 <span class="sd">    x</span>
 <span class="sd">        input array. Should have a floating-point data type.</span>
 <span class="sd">    axis</span>
-<span class="sd">        If an integer, ``axis`` specifies the axis (dimension) along which to compute</span>
-<span class="sd">        vector norms. If an n-tuple, ``axis`` specifies the axes (dimensions) along</span>
-<span class="sd">        which to compute batched vector norms. If ``None``, the vector norm must be</span>
-<span class="sd">        computed over all array values (i.e., equivalent to computing the vector norm of</span>
-<span class="sd">        a flattened array). Negative indices must be supported. Default: ``None``.</span>
+<span class="sd">        If an integer, ``axis`` specifies the axis (dimension)</span>
+<span class="sd">        along which to compute vector norms. If an n-tuple,</span>
+<span class="sd">        ``axis`` specifies the axes (dimensions) along</span>
+<span class="sd">        which to compute batched vector norms. If ``None``, the</span>
+<span class="sd">         vector norm must be computed over all array values</span>
+<span class="sd">         (i.e., equivalent to computing the vector norm of</span>
+<span class="sd">        a flattened array). Negative indices must be</span>
+<span class="sd">        supported. Default: ``None``.</span>
 <span class="sd">    keepdims</span>
-<span class="sd">        If ``True``, the axes (dimensions) specified by ``axis`` must be included in the</span>
-<span class="sd">        result as singleton dimensions, and, accordingly, the result must be compatible</span>
-<span class="sd">        with the input array (see :ref:`broadcasting`). Otherwise, if ``False``, the</span>
-<span class="sd">        axes (dimensions) specified by ``axis`` must not be included in the result.</span>
-<span class="sd">        Default: ``False``.</span>
+<span class="sd">        If ``True``, the axes (dimensions) specified by ``axis``</span>
+<span class="sd">        must be included in the result as singleton dimensions,</span>
+<span class="sd">        and, accordingly, the result must be compatible</span>
+<span class="sd">        with the input array (see :ref:`broadcasting`). Otherwise,</span>
+<span class="sd">        if ``False``, the axes (dimensions) specified by ``axis`` must</span>
+<span class="sd">        not be included in the result. Default: ``False``.</span>
 <span class="sd">    ord</span>
 <span class="sd">        order of the norm. The following mathematical norms must be supported:</span>
 
@@ -11844,7 +11949,7 @@
 <span class="sd">        +------------------+--------------------------------+</span>
 <span class="sd">        | -1               | 1./sum(1./abs(a))              |</span>
 <span class="sd">        +------------------+--------------------------------+</span>
-<span class="sd">        | -2               | 1./sqrt(sum(1./abs(a)\*\*2))   |</span>
+<span class="sd">        | -2               | 1./sqrt(sum(1./abs(a)\*\*2))   | </span>
 <span class="sd">        +------------------+--------------------------------+</span>
 <span class="sd">        | -inf             | min(abs(a))                    |</span>
 <span class="sd">        +------------------+--------------------------------+</span>
@@ -11853,18 +11958,21 @@
 
 <span class="sd">        Default: ``2``.</span>
 <span class="sd">    out</span>
-<span class="sd">        optional output array, for writing the result to. It must have a shape that the</span>
-<span class="sd">        inputs broadcast to.</span>
+<span class="sd">        optional output array, for writing the result to. It must</span>
+<span class="sd">        have a shape that the inputs broadcast to.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret</span>
-<span class="sd">        an array containing the vector norms. If ``axis`` is ``None``, the returned</span>
-<span class="sd">        array must be a zero-dimensional array containing a vector norm. If ``axis`` is</span>
-<span class="sd">        a scalar value (``int`` or ``float``), the returned array must have a rank which</span>
-<span class="sd">        is one less than the rank of ``x``. If ``axis`` is a ``n``-tuple, the returned</span>
-<span class="sd">        array must have a rank which is ``n`` less than the rank of ``x``. The returned</span>
-<span class="sd">        array must have a floating-point data type determined by :ref:`type-promotion`.</span>
+<span class="sd">        an array containing the vector norms. If ``axis`` is</span>
+<span class="sd">        ``None``, the returned array must be a zero-dimensional</span>
+<span class="sd">        array containing a vector norm. If ``axis`` is</span>
+<span class="sd">        a scalar value (``int`` or ``float``), the returned array</span>
+<span class="sd">        must have a rank which is one less than the rank of ``x``.</span>
+<span class="sd">        If ``axis`` is a ``n``-tuple, the returned array must have</span>
+<span class="sd">         a rank which is ``n`` less than the rank of ``x``. The returned</span>
+<span class="sd">        array must have a floating-point data type determined</span>
+<span class="sd">        by :ref:`type-promotion`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
@@ -11892,17 +12000,20 @@
 <span class="sd">    self</span>
 <span class="sd">        input array. Should have a floating-point data type.</span>
 <span class="sd">    axis</span>
-<span class="sd">        If an integer, ``axis`` specifies the axis (dimension) along which to compute</span>
-<span class="sd">        vector norms. If an n-tuple, ``axis`` specifies the axes (dimensions) along</span>
-<span class="sd">        which to compute batched vector norms. If ``None``, the vector norm must be</span>
-<span class="sd">        computed over all array values (i.e., equivalent to computing the vector norm of</span>
-<span class="sd">        a flattened array). Negative indices must be supported. Default: ``None``.</span>
+<span class="sd">        If an integer, ``axis`` specifies the axis (dimension)</span>
+<span class="sd">        along which to compute vector norms. If an n-tuple, ``axis``</span>
+<span class="sd">        specifies the axes (dimensions) along which to compute</span>
+<span class="sd">        batched vector norms. If ``None``, the vector norm must be</span>
+<span class="sd">        computed over all array values (i.e., equivalent to computing</span>
+<span class="sd">        the vector norm of a flattened array). Negative indices must</span>
+<span class="sd">        be supported. Default: ``None``.</span>
 <span class="sd">    keepdims</span>
-<span class="sd">        If ``True``, the axes (dimensions) specified by ``axis`` must be included in the</span>
-<span class="sd">        result as singleton dimensions, and, accordingly, the result must be compatible</span>
-<span class="sd">        with the input array (see :ref:`broadcasting`). Otherwise, if ``False``, the</span>
-<span class="sd">        axes (dimensions) specified by ``axis`` must not be included in the result.</span>
-<span class="sd">        Default: ``False``.</span>
+<span class="sd">        If ``True``, the axes (dimensions) specified by ``axis`` must</span>
+<span class="sd">        be included in the result as singleton dimensions, and, accordingly,</span>
+<span class="sd">        the result must be compatible with the input array</span>
+<span class="sd">        (see :ref:`broadcasting`).Otherwise, if ``False``, the axes</span>
+<span class="sd">        (dimensions) specified by ``axis`` must not be included in</span>
+<span class="sd">        the result. Default: ``False``.</span>
 <span class="sd">    ord</span>
 <span class="sd">        order of the norm. The following mathematical norms must be supported:</span>
 
@@ -11927,7 +12038,7 @@
 <span class="sd">        +------------------+--------------------------------+</span>
 <span class="sd">        | -1               | 1./sum(1./abs(a))              |</span>
 <span class="sd">        +------------------+--------------------------------+</span>
-<span class="sd">        | -2               | 1./sqrt(sum(1./abs(a)\*\*2))   |</span>
+<span class="sd">        | -2               | 1./sqrt(sum(1./abs(a)\*\*2))   | </span>
 <span class="sd">        +------------------+--------------------------------+</span>
 <span class="sd">        | -inf             | min(abs(a))                    |</span>
 <span class="sd">        +------------------+--------------------------------+</span>
@@ -11936,18 +12047,20 @@
 
 <span class="sd">        Default: ``2``.</span>
 <span class="sd">    out</span>
-<span class="sd">        optional output array, for writing the result to. It must have a shape that the</span>
-<span class="sd">        inputs broadcast to.</span>
+<span class="sd">        optional output array, for writing the result to. It must</span>
+<span class="sd">        have a shape that the inputs broadcast to.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret</span>
-<span class="sd">        an array containing the vector norms. If ``axis`` is ``None``, the returned</span>
-<span class="sd">        array must be a zero-dimensional array containing a vector norm. If ``axis`` is</span>
-<span class="sd">        a scalar value (``int`` or ``float``), the returned array must have a rank which</span>
-<span class="sd">        is one less than the rank of ``x``. If ``axis`` is a ``n``-tuple, the returned</span>
-<span class="sd">        array must have a rank which is ``n`` less than the rank of ``x``. The returned</span>
-<span class="sd">        array must have a floating-point data type determined by :ref:`type-promotion`.</span>
+<span class="sd">        an array containing the vector norms. If ``axis`` is ``None``,</span>
+<span class="sd">        the returned array must be a zero-dimensional array containing</span>
+<span class="sd">        a vector norm. If ``axis`` is a scalar value (``int`` or ``float``),</span>
+<span class="sd">        the returned array must have a rank which is one less than the</span>
+<span class="sd">        rank of ``x``. If ``axis`` is a ``n``-tuple, the returned</span>
+<span class="sd">        array must have a rank which is ``n`` less than the rank of</span>
+<span class="sd">        ``x``. The returned array must have a floating-point data type</span>
+<span class="sd">        determined by :ref:`type-promotion`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
@@ -13979,6 +14092,118 @@
 <span class="sd">        b: ivy.array([[3.8, 1.43],</span>
 <span class="sd">                      [23., 29.4]])</span>
 <span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="static_multinomial"><a class="viewcode-back" href="../../../functional/ivy/random/multinomial/static_multinomial_container.html#ivy.container.container_methods.static_multinomial">[docs]</a><span class="k">def</span> <span class="nf">static_multinomial</span><span class="p">(</span>
+    <span class="n">population_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">probs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">replace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;ivy.Container static method variant of ivy.multinomial. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.multinomial also</span>
+<span class="sd">    applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    population_size</span>
+<span class="sd">        The size of the population from which to draw samples.</span>
+<span class="sd">    num_samples</span>
+<span class="sd">        Number of independent samples to draw from the population.</span>
+<span class="sd">    batch_size</span>
+<span class="sd">        Number of tensors to generate. Default is 1.</span>
+<span class="sd">    probs</span>
+<span class="sd">        The unnormalized probabilities for all elements in population,</span>
+<span class="sd">        default is uniform *[batch_shape, population_size]*</span>
+<span class="sd">    replace</span>
+<span class="sd">        Whether to replace samples once they&#39;ve been drawn. Default is True.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+<span class="sd">    device</span>
+<span class="sd">        device on which to create the array &#39;cuda:0&#39;, &#39;cuda:1&#39;, &#39;cpu&#39; etc.</span>
+<span class="sd">        (Default value = None)</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Drawn samples from the parameterized normal distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="multinomial"><a class="viewcode-back" href="../../../functional/ivy/random/multinomial/multinomial_container.html#ivy.container.container_methods.multinomial">[docs]</a><span class="k">def</span> <span class="nf">multinomial</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">replace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;ivy.Container instance method variant of ivy.multinomial. This method</span>
+<span class="sd">    simply wraps the function, and so the docstring for ivy.multinomial also</span>
+<span class="sd">    applies to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        The unnormalized probabilities for all elements in population,</span>
+<span class="sd">        default is uniform *[batch_shape, population_size]*</span>
+<span class="sd">    population_size</span>
+<span class="sd">        The size of the population from which to draw samples.</span>
+<span class="sd">    num_samples</span>
+<span class="sd">        Number of independent samples to draw from the population.</span>
+<span class="sd">    batch_size</span>
+<span class="sd">        Number of tensors to generate. Default is 1.</span>
+<span class="sd">    replace</span>
+<span class="sd">        Whether to replace samples once they&#39;ve been drawn. Default is True.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+<span class="sd">    device</span>
+<span class="sd">        device on which to create the array &#39;cuda:0&#39;, &#39;cuda:1&#39;, &#39;cpu&#39; etc.</span>
+<span class="sd">        (Default value = None)</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Drawn samples from the parameterized normal distribution.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
